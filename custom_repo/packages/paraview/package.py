@@ -19,9 +19,10 @@ class Paraview(CMakePackage):
     list_url = "https://www.paraview.org/files"
     list_depth = 1
     git      = "https://gitlab.kitware.com/paraview/paraview.git"
-    maintainers = ['Yathu']
- 
-    version('5.10.1', sha256='520e3cdfba4f8592be477314c2f6c37ec73fb1d5b25ac30bdbd1c5214758b9c2', preferred=True)
+    maintainers = ['syathunanthan']
+
+    version("5.11.0", sha256="9a0b8fe8b1a2cdfd0ace9a87fa87e0ec21ee0f6f0bcb1fdde050f4f585a25165", preferred=True)
+    version('5.10.1', sha256='520e3cdfba4f8592be477314c2f6c37ec73fb1d5b25ac30bdbd1c5214758b9c2')
     version('5.10.0', sha256='86d85fcbec395cdbc8e1301208d7c76d8f48b15dc6b967ffbbaeee31242343a5')
     version('5.9.1', sha256='0d486cb6fbf55e428845c9650486f87466efcb3155e40489182a7ea85dfd4c8d')
     version('5.9.0', sha256='b03258b7cddb77f0ee142e3e77b377e5b1f503bcabc02bfa578298c99a06980d')
@@ -45,13 +46,13 @@ class Paraview(CMakePackage):
     # This package will only work with libjpeg-turbo, not other jpeg providers    
 #    depends_on("qt+opengl")
     depends_on("qt")
-    depends_on("python")
+    depends_on("python@3.9.9")
     depends_on('cmake@3.3:', type='build')
     depends_on("protobuf")
-#    depends_on('ffmpeg')
-#    depends_on('boost') # this is needed for visit bridge silo reader
-#    depends_on('silo') # modified recepie
-#    depends_on('py-numpy')
+    depends_on('ffmpeg')
+    depends_on('boost') # this is needed for visit bridge silo reader
+    depends_on('silo') # modified recepie
+    depends_on('py-numpy')
 
     def cmake_args(self):
         # FIXME: CMAKE_INSTALL_PREFIX and CMAKE_BUILD_TYPE
@@ -67,10 +68,10 @@ class Paraview(CMakePackage):
             '-DOPENGL_opengl_LIBRARY=/usr/lib64/libOpenGL.so' ,
             '-DPARAVIEW_BUILD_SHARED_LIBS:BOOL=ON' ,
             '-DPARAVIEW_USE_QT=ON' ,
-            '-DPARAVIEW_USE_PYTHON:BOOL=ON' ]
-#            '-DPARAVIEW_ENABLE_FFMPEG:BOOL=ON' ]
-#            '-DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON' ,
-#            '-DVISIT_BUILD_READER_Silo:BOOL=ON']
+            '-DPARAVIEW_USE_PYTHON:BOOL=ON' ,
+            '-DPARAVIEW_ENABLE_FFMPEG:BOOL=ON' ,
+            '-DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON' ,
+            '-DVISIT_BUILD_READER_Silo:BOOL=ON']
         return args
 
 # ccmake .. -DVTK_USE_X:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug -DOPENGL_opengl_LIBRARY=/usr/lib64/libOpenGL.so -DPARAVIEW_BUILD_SHARED_LIBS:BOOL=ON -DPARAVIEW_USE_QT:BOOL=ON -DPARAVIEW_USE_PYTHON:BOOL=ON -DPARAVIEW_USE_MPI:BOOL=ON -DVTK_MODULE_USE_EXTERNAL_ParaView_protobuf:BOOL=ON -DCATALYST_BUILD_TOOLS:BOOL=ON -DCMAKE_INSTALL_PREFIX:PATH=/software/projects/pawsey0003/ysivarajah/setonix/manual/paraview/ParaView-v5.10.1/install

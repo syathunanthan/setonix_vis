@@ -24,10 +24,14 @@ class Qt(Package):
     #url      = 'https://download.qt.io/archive/qt/5.15/5.15.2/single/qt-everywhere-src-5.15.2.tar.xz'
     list_url = 'https://download.qt.io/archive/qt/'
     list_depth = 3
-    maintainers = ['Yathu']
+    maintainers = ['syathunanthan']
 
     phases = ['configure', 'build', 'install']
-    version('5.15.5', sha256='5a97827bdf9fd515f43bc7651defaf64fecb7a55e051c79b8f80510d0e990f06')
+    version("5.15.9", sha256="26d5f36134db03abe4a6db794c7570d729c92a3fc1b0bf9b1c8f86d0573cd02f")
+    version("5.15.8", sha256="776a9302c336671f9406a53bd30b8e36f825742b2ec44a57c08217bff0fa86b9")
+    version("5.15.7", sha256="8a71986676a3f37a198a9113acedbfd5bc5606a459b6b85816d951458adbe9a0")
+    version("5.15.6", sha256="ebc77d27934b70b25b3dc34fbec7c4471eb451848e891c42b32409ea30fe309f")
+    version('5.15.5', sha256='5a97827bdf9fd515f43bc7651defaf64fecb7a55e051c79b8f80510d0e990f06', preferred=True)
     version('5.15.2', sha256='3a530d1b243b5dec00bc54937455471aaa3e56849d2593edb8ded07228202240')
     version('5.14.2', sha256='c6fcd53c744df89e7d3223c02838a33309bd1c291fcb6f9341505fe99f7f19fa')
     version('5.14.1', sha256='6f17f488f512b39c2feb57d83a5e0a13dcef32999bea2e2a8f832f54a29badb8', deprecated=True)
@@ -103,6 +107,7 @@ class Qt(Package):
     depends_on("libsm")
     depends_on("libxext")
     depends_on("libxrender")
+    depends_on("libxkbcommon")
 
     @when('@5')
     def configure(self, spec, prefix):
