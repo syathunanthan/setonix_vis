@@ -46,7 +46,7 @@ class Paraview(CMakePackage):
     # This package will only work with libjpeg-turbo, not other jpeg providers    
 #    depends_on("qt+opengl")
     depends_on("qt")
-    depends_on("python@3.9.9")
+    depends_on("python")
     depends_on('cmake@3.3:', type='build')
     depends_on("protobuf")
     depends_on('ffmpeg')
