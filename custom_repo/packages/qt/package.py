@@ -20,13 +20,15 @@ class Qt(Package):
     # Supported releases: 'https://download.qt.io/official_releases/qt/'
     # Older archives: 'https://download.qt.io/new_archive/qt/'
     #url  = 'https://download.qt.io/archive/qt/5.14/5.14.2/single/qt-everywhere-src-5.14.2.tar.xz'
-    url      = 'https://download.qt.io/official_releases/qt/5.15/5.15.5/single/qt-everywhere-opensource-src-5.15.5.tar.xz'
+    #url      = 'https://download.qt.io/official_releases/qt/5.15/5.15.5/single/qt-everywhere-opensource-src-5.15.5.tar.xz'
     #url      = 'https://download.qt.io/archive/qt/5.15/5.15.2/single/qt-everywhere-src-5.15.2.tar.xz'
+    url = 'https://download.qt.io/official_releases/qt/5.15/5.15.10/single/qt-everywhere-opensource-src-5.15.10.tar.xz'
     list_url = 'https://download.qt.io/archive/qt/'
     list_depth = 3
-    maintainers = ['syathunanthan']
+    maintainers = ['Yathu']
 
     phases = ['configure', 'build', 'install']
+    version("5.15.10", sha256="b545cb83c60934adc9a6bbd27e2af79e5013de77d46f5b9f5bb2a3c762bf55ca")
     version("5.15.9", sha256="26d5f36134db03abe4a6db794c7570d729c92a3fc1b0bf9b1c8f86d0573cd02f")
     version("5.15.8", sha256="776a9302c336671f9406a53bd30b8e36f825742b2ec44a57c08217bff0fa86b9")
     version("5.15.7", sha256="8a71986676a3f37a198a9113acedbfd5bc5606a459b6b85816d951458adbe9a0")
@@ -95,19 +97,19 @@ class Qt(Package):
                         'gcc': ('g++',)}
     platform_mapping = {'darwin': ('macx'), 'cray': ('linux')}
 
-    depends_on("libx11")
+    depends_on("libx11@1.8.4")
     depends_on("libxcb")
     depends_on("xcb-util-image")
     depends_on("xcb-util-keysyms")
     depends_on("xcb-util-renderutil")
     depends_on("xcb-util-wm")
     depends_on("libxkbcommon")
-    depends_on("libxcb")
+#    depends_on("libxcb")
     depends_on("fontconfig")
-    depends_on("libsm")
+    depends_on("libsm^xtrans@1.4.0")
     depends_on("libxext")
     depends_on("libxrender")
-    depends_on("libxkbcommon")
+#    depends_on("libxkbcommon")
 
     @when('@5')
     def configure(self, spec, prefix):
@@ -126,7 +128,7 @@ class Qt(Package):
             '-shared',
             '-xcb' ,
 #            '-xcb-xlib' ,
-#            '-bundled-xcb-xinput' ,
+            '-bundled-xcb-xinput' ,
         ]
 
 # ./configure -prefix /software/projects/pawsey0003/ysivarajah/setonix/manual/qt/qt-everywhere-src-5.15.5/install -confirm-license -opensource -release -shared -system-zlib -system-libpng -system-libjpeg -opengl -verbose -system-xcb

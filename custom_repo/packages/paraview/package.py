@@ -19,7 +19,7 @@ class Paraview(CMakePackage):
     list_url = "https://www.paraview.org/files"
     list_depth = 1
     git      = "https://gitlab.kitware.com/paraview/paraview.git"
-    maintainers = ['syathunanthan']
+    maintainers = ['Yathu']
 
     version("5.11.0", sha256="9a0b8fe8b1a2cdfd0ace9a87fa87e0ec21ee0f6f0bcb1fdde050f4f585a25165", preferred=True)
     version('5.10.1', sha256='520e3cdfba4f8592be477314c2f6c37ec73fb1d5b25ac30bdbd1c5214758b9c2')
